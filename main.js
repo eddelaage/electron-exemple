@@ -12,7 +12,7 @@ const {app, BrowserWindow} = require('electron')
     win.loadFile('index.html')
   
     // Ouvre les DevTools.
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
   
     // Émit lorsque la fenêtre est fermée.
     win.on('closed', () => {
