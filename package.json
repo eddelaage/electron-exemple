@@ -1,0 +1,22 @@
+{
+  "name": "electron-exemple",
+  "version": "1.0.0",
+  "description": "Apprentissage d'électron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddelaage/electron-exemple.git"
+  },
+  "author": "Edouard de Laage",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eddelaage/electron-exemple/issues"
+  },
+  "homepage": "https://github.com/eddelaage/electron-exemple#readme",
+  "dependencies": {
+    "electron": "^3.0.1"
+  }
+}
