@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/eddelaage/electron-exemple#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "electron": "^3.0.1"
   }
 }
