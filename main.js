@@ -1,15 +1,18 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
   
   // Gardez une reference globale de l'objet window, si vous ne le faites pas, la fenetre sera
   // fermee automatiquement quand l'objet JavaScript sera garbage collected.
   let win
+  let settings
   
   function createWindow () {
     // Créer le browser window.
     win = new BrowserWindow({width: 800, height: 600})
+    settings = new BrowserWindow({width: 400, height: 400, parent: win, show: false})
   
     // et charge le index.html de l'application.
     win.loadFile('index.html')
+    settings.loadFile('settings.html')
   
     // Ouvre les DevTools.
     // win.webContents.openDevTools()
@@ -21,8 +24,16 @@ const {app, BrowserWindow} = require('electron')
       // où vous devez supprimer l'élément correspondant.
       win = null
     })
-  }
   
+
+    settings.on('closed', () => {
+    // Dé-référence l'objet window , normalement, vous stockeriez les fenêtres
+    // dans un tableau si votre application supporte le multi-fenêtre. C'est le moment
+    // où vous devez supprimer l'élément correspondant.
+      settings = null
+    })
+  }
+
   // Cette méthode sera appelée quant Electron aura fini
   // de s'initialiser et sera prêt à créer des fenêtres de navigation.
   // Certaines APIs peuvent être utilisées uniquement quand cet événement est émit.
@@ -46,3 +57,7 @@ const {app, BrowserWindow} = require('electron')
   })
   
   // Dans ce fichier, vous pouvez inclure le reste de votre code spécifique au processus principal. Vous pouvez également le mettre dans des fichiers séparés et les inclure ici.
+
+  ipcMain.on('toggle-settings', () => {
+    settings.isVisible() ? settings.hide() : settings.show() 
+  })
